@@ -35,12 +35,12 @@ class SecurityController extends AbstractController
         $utente = new User();
         $form = $this->createFormBuilder($utente)
         ->add('username', TextType::class, array(
-            'attr'=> array( 'class' => 'form-control')))
+            'attr'=> array( 'class' => 'form-control mb-3')))
         ->add('password', PasswordType::class,array(
-            'attr'=> array( 'class' => 'form-control')))
+            'attr'=> array( 'class' => 'form-control mb-3')))
         ->add('save', SubmitType::class, array(
             'label'=> 'Register',
-            'attr' => array('class' => 'btn-dark btn mt-3 btn-primary')))
+            'attr' => array('class' => ' btn mt-3 btn-primary')))
         ->getForm();
 
         $form->handleRequest($request);

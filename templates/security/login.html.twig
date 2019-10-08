@@ -4,22 +4,25 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+   
 </style>
 
-<div class="example-wrapper">
-    <h1>Login page</h1>
-    {% if error %}
-        <span class="text-danger">{{ error.messageKey }}</span>
-    {% endif %}
-    <form action="{{ path('login')}}" method="POST">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-5">Login</h1>
+            {% if error %}
+                <span class="text-danger">{{ error.messageKey }}</span>
+            {% endif %}
+            <form action="{{ path('login')}}" method="POST">
+                <label>Username</label>
+                <input class="form-control mb-3" type="text" name="_username" value="{{last_username}}" placeholder="Username here ...">
+                <label>Password</label>
+                <input class="form-control mb-3" type="password" name="_password" placeholder="Password here ...">
 
-        <input type="text" name="_username" value="{{last_username}}" placeholder="Username here ...">
-
-        <input type="password" name="_password" placeholder="Password here ...">
-
-        <button type="submit">Login</button>
-    </form>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

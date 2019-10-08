@@ -2,26 +2,42 @@
 {% block title %} SymVideo {% endblock %}
 
 {% block body %}
-  <h1>Elenco dei video</h1>
-  <a href={{ url('new_video') }} class="btn btn-primary">Nuovo Video</a>
-  <table class="table table-striped">
-    <thead>
-     <tr>
-      <th>ID</th>
-      <th>title</th>
-     </tr>
-    </thead>
-    <tbody>
-        
-        {% for video in videos %}
-        <tr>
-          <th scope="row">{{video.id}}</th>
-          <td>{{video.title}}</td>
-          <td><a href="./video/{{video.id}}" class="btn btn-primary btn-info">Show</a></td>
-          <td><a href="./video/delete/{{video.id}}" class="btn btn-primary btn-danger delete">Delete</a></td>
-          <td><a href="./video/edit/{{video.id}}" class="btn btn-primary ">Modifica</a></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h1>Elenco dei video</h1>
+      <a href={{ url('new_video') }} class="btn btn-primary mt-2">Nuovo Video</a>
+      <table class="table table-striped mt-5">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>title</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+              
+              {% for video in videos %}
+              <tr>
+                <th scope="row">{{video.id}}</th>
+                <td>
+                  {{video.title}}
+                  <div class="actions">
+                    <a href="./video/{{video.id}}" class="text-info mx-2 mt-4  d-inline-block d-md-none">Show</a>
+                    <a href="./video/delete/{{video.id}}" class="text-danger  mx-2 mt-4 delete d-inline-block d-md-none">Delete</a>
+                    <a href="./video/edit/{{video.id}}" class="text-primary  mx-2 mt-4  d-inline-block d-md-none">Modifica</a>
+                  <div>
+                </td>
+                <td class="d-none d-md-table-cell"><a href="./video/{{video.id}}" class="btn btn-primary btn-info">Show</a></td>
+                <td class="d-none d-md-table-cell"><a href="./video/delete/{{video.id}}" class="btn btn-primary btn-danger delete">Delete</a></td>
+                <td class="d-none d-md-table-cell"><a href="./video/edit/{{video.id}}" class="btn btn-primary ">Modifica</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 {% endblock %}

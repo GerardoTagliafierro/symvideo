@@ -2,14 +2,16 @@
 {% block title %} SymVideo {% endblock %}
 
 {% block body %}
-<div class="container">
-  {{
+<div class="search">
+ {{
     render(controller(
       'App\\Controller\\SearchController::searchBar'
     ))
   }}
+</div>
+<div class="container">
   {% for video in videos|reverse %}
-    <div class="row mb-5">
+    <div class="row mb-5 video">
         <div class="col-12 col-md-6">
             <video class="col-12" >
             <source src="{{ asset('uploads/video/' ~ video.filename) }}" type="video/mp4">

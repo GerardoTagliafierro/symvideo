@@ -19,8 +19,11 @@ class SearchController extends AbstractController
     public function searchBar(){
         $form = $this->createFormBuilder(null)
         ->setAction($this->generateUrl('handlesearch'))
-        ->add('query', TextType::class )
-        ->add('search', SubmitType::class)
+        ->add('query', TextType::class , array(
+            'label'=> 'Cerca un video',
+            'attr'=> array( 'class' => 'form-control')))
+        ->add('search', SubmitType::class , array(
+            'attr'=> array( 'class' => 'btn btn-primary')))
         ->getForm();
 
         return $this->render('search/bar.html.twig', array(
