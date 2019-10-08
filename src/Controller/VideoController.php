@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Entity\User;
+use App\Entity\Seen;
+
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -152,8 +154,23 @@ class VideoController extends Controller{
   */
   public function show($id){
     $video = $this->getDoctrine()->getRepository(Video::class)->find($id);
+    if ($this->getUser()) {
+      $user  = $this->getUser()->getId();
 
-    return $this->render('video/single.html.twig', array( 'video' => $video ) );
+      $check = $this->getDoctrine()->getRepository(Seen::class)
+          ->findBy(array(
+              'user' => $user,
+              'video'=> $video->getId()
+          ));
+  
+      if ($check):
+        $seencheck = 1;
+      else:
+        $seencheck = 0;
+      endif;  
+    }
+    $seencheck = 0;
+    return $this->render('video/single.html.twig', array( 'video' => $video, 'seencheck' => $seencheck ) );
   }
 
   /**

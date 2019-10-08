@@ -8,8 +8,19 @@
     <source src="{{ asset('uploads/video/' ~ video.filename) }}" type="video/mp4">
     Your browser does not support HTML5 video.
     </video>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <div class="col-12 text-center text-md-right d-flex align-items-center justify-content-between">
+        {% if seencheck == 0 %}
+          <p>Mark this video as <a href="{{ url('home') }}seen/add/{{video.id}}" class="">Viewed</a></p>
+          <a class="btn btn-danger text-white">Not Viewed</a>
+        {% else %}
+          <p>Mark this video as <a href="{{ url('home') }}seen/add/{{video.id}}" class="text-danger">Not viewed</a></p>
+          <a class="btn btn-success text-white"> viewed</a>
+        {% endif %}
+      </div>
+    {% endif %}
     <div class="col-12">
-      <h1>{{video.title}}</h1>
+      <h1>{{video.title}} </h1>
       <p>{{video.description}}</p>
       <a href="../" class="btn btn-dark">back</a>
     </div>
