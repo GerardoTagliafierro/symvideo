@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %} SymVideo {{video.title}} {% endblock %}
+
+{% block body %}
+  <video class="col-12" controls>
+  <source src="{{ asset('uploads/video/' ~ video.filename) }}" type="video/mp4">
+  Your browser does not support HTML5 video.
+  </video>
+  <h1>{{video.title}}</h1>
+  <p>{{video.description}}</p>
+  <a href="../" class="btn ">back</a>
+{% endblock %}

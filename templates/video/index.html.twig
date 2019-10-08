@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %} SymVideo {% endblock %}
+
+{% block body %}
+  <h1>Elenco dei video</h1>
+  <a href={{ url('new_video') }} class="btn btn-primary">Nuovo Video</a>
+  <table class="table table-striped">
+    <thead>
+     <tr>
+      <th>ID</th>
+      <th>title</th>
+     </tr>
+    </thead>
+    <tbody>
+        
+        {% for video in videos %}
+        <tr>
+          <th scope="row">{{video.id}}</th>
+          <td>{{video.title}}</td>
+          <td><a href="./video/{{video.id}}" class="btn btn-primary btn-info">Show</a></td>
+          <td><a href="./video/delete/{{video.id}}" class="btn btn-primary btn-danger delete">Delete</a></td>
+          <td><a href="./video/edit/{{video.id}}" class="btn btn-primary ">Modifica</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
