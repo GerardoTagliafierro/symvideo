@@ -56,13 +56,12 @@ class VideoController extends Controller{
       ->add('description', TextareaType::class, array(
         'required' => false,
         'attr' => array('class' => 'form-control')))
+      ->add('filename', FileType::class, array(
+        'label' => 'Upload a video',
+        'attr' => array('class' => 'form-control')))
       ->add('save', SubmitType::class, array(
         'label'=> 'Create',
         'attr' => array('class' => 'btn-dark btn mt-3 btn-primary')))
-      ->add('filename', FileType::class, array(
-        'label' => 'Upload a video',
-        'attr' => array('class' => 'form-control'),
-      ))
       ->getForm();
         
        $form->handleRequest($request);
@@ -168,8 +167,10 @@ class VideoController extends Controller{
       else:
         $seencheck = 0;
       endif;  
+    }else{
+      $seencheck = 0;
     }
-    $seencheck = 0;
+    
     return $this->render('video/single.html.twig', array( 'video' => $video, 'seencheck' => $seencheck ) );
   }
 
